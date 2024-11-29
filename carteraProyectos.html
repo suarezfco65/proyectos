@@ -10,18 +10,15 @@
   <script src="ProyectosManager.js"></script>
 </head>
 <body>
-
-<script>addContentHTML('navbar','navbar.html');</script>
-
+    <div id="navbar"></div>
 <script>
+addContentHTML('navbar','navbar.html');
 // Uso de la clase
 const url = 'proyectos.json'; // Reemplaza con la URL de tu archivo JSON
 const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico"];
 const proyectos = new ProyectosManager(url);
-
 // Generar tabla
 proyectos.generarTabla('Lista de Proyectos', camposTabla);
-
 </script>
 </body>
 </html>
