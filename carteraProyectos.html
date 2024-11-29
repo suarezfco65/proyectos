@@ -18,10 +18,10 @@
 // Uso de la clase
 const url = 'proyectos.json'; // Reemplaza con la URL de tu archivo JSON
 const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico"];
-const registroManager = new RegistroManager(url);
+const proyectos = new ProyectosManager(url);
 
 // Generar tabla
-registroManager.generarTabla('Lista de Proyectos', camposTabla);
+proyectos.generarTabla('Lista de Proyectos', camposTabla);
 
 </script>
 </body>
