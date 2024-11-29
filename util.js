@@ -18,3 +18,7 @@ function getFieldFromLocation(campo) {
   // Retornar el valor o null si no existe
   return valor ? valor : null;
 }
+function esMovil() {
+  const anchoVentana = window.innerWidth;
+  return anchoVentana < 768; // Umbral para dispositivos móviles
+}

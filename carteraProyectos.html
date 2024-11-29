@@ -15,7 +15,11 @@
 addContentHTML('navbar','navbar.html');
 // Uso de la clase
 const url = 'proyectos.json'; // Reemplaza con la URL de tu archivo JSON
-const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico",'Alcance'];
+if (esMovil()) {
+  const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico"];
+} else  {
+  const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico",'Alcance'];
+}
 const proyectos = new ProyectosManager(url);
 // Generar tabla
 proyectos.generarTabla('Cartera de Proyectos', camposTabla);
