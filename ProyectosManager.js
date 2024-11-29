@@ -3,7 +3,6 @@ class ProyectosManager {
         this.url = url;
     }
 
-    // Método para cargar el archivo JSON
     async cargarJSON() {
         const response = await fetch(this.url);
         if (!response.ok) {
@@ -12,12 +11,10 @@ class ProyectosManager {
         return await response.json();
     }
 
-    // Método para buscar un registro por código
     buscarRegistroPorCodigo(data, codigo) {
         return data.find(registro => registro.Código === codigo);
     }
 
-    // Método para mostrar el contenido del registro en formato HTML
     mostrarContenidoRegistro(registro, mostrarCampos = false, campos = []) {
         if (!registro) {
             document.body.innerHTML += '<p>No hay registro para mostrar.</p>';
@@ -37,26 +34,24 @@ class ProyectosManager {
         document.body.innerHTML += contenido;
     }
 
-    // Método para formatear valores
     formatearValor(key, value) {
-        if (Array.isArray(value)) {
-            return value.map(item => this.formatearObjeto(item)).join(', ');
+        // Verificar si el valor es un objeto
+        if (typeof value === 'object' && value !== null) {
+            return this.formatearObjeto(value);
+        } else if (Array.isArray(value)) {
+            return value.map(item => this.formatearValor(key, item)).join(', ');
         } else if (typeof value === 'number') {
-            if (key.includes('Monto')) {
-                return this.formatoFinanciero(value);
-            } else if (key === 'Ejecución Física' || key === 'Ejecución Financiera') {
-                return `${value.toFixed(2)}%`;
-            }
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'USD' }).format(value);
         }
         return value;
     }
 
-    // Método para formatear montos en formato financiero
-    formatoFinanciero(monto) {
-        return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(monto);
+    formatearObjeto(obj) {
+        const etiqueta = Array.isArray(obj) ? 'ol' : 'ul';
+        // Formatear un objeto como una lista
+        return `<${etiqueta}>${Object.entries(obj).map(([key, value]) => `<li>${etiqueta === 'ol' ?'':`<strong>${key}:</strong>`} ${this.formatearValor(key, value)}</li>`).join('')}</${etiqueta}>`;
     }
 
-    // Método para generar una tabla a partir de los datos de proyectos
     async generarTabla(titulo, campos) {
         const datos = await this.cargarJSON();
         let tabla = `
@@ -69,40 +64,19 @@ class ProyectosManager {
                     <tbody>
         `;
 
-        // Sumar montos
-        let totalMonto = 0;
-        let hayMontos = false;
-
         datos.forEach(registro => {
-            const fila = campos.map(campo => {
-                const valor = registro[campo];
-                if (campo.includes('Monto') && typeof valor === 'number') {
-                    totalMonto += valor; // Sumar montos
-                    hayMontos = true; // Indicar que hay montos
-                }
-                return `<td>${this.formatearValor(campo, valor)}</td>`;
-            }).join('');
+            const fila = campos.map(campo => `<td>${this.formatearValor(campo, registro[campo])}</td>`).join('');
             tabla += `<tr>${fila}</tr>`;
         });
 
-        // Solo mostrar total si hay montos
-        if (hayMontos) {
-            tabla += `
+        tabla += `
                     </tbody>
                 </table>
-                <h5>Total Monto: ${this.formatoFinanciero(totalMonto)}</h5>
-            `;
-        } else {
-            tabla += `
-                    </tbody>
-                </table>
-            `;
-        }
-
+            </div>
+        `;
         document.body.innerHTML += tabla;
     }
 
-    // Método principal para ejecutar la lógica
     async main(codigoBuscado, mostrarCampos = false, campos = []) {
         try {
             const datos = await this.cargarJSON();
