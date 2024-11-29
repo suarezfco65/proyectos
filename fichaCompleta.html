@@ -16,11 +16,10 @@
 <script>
 // Uso de la clase
 const url = 'proyectos.json'; // Reemplaza con la URL de tu archivo JSON
-const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico"];
+const codigoProyecto = getFieldFromLocation('codigo'); // Reemplaza 'nombreCampo' con el campo que desees
 const proyectos = new ProyectosManager(url);
 
-// Generar tabla
-proyectos.generarTabla('Lista de Proyectos', camposTabla);
+proyectos.main(codigoProyecto);
 
 </script>
 </body>
