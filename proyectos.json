@@ -6,15 +6,15 @@
         "Líder Técnico": "José Casanova",
         "Contratación": [
             {
+                "Actividad": "Bienes",
                 "Partida Presupuestaria":"402990000",
                 "Monto":541592.06,
-                "Actividad": "Bienes",
                 "Descripción": "Servidores"
             },
             {
+                "Actividad": "Servicios",
                 "Partida Presupuestaria":"403100300",
                 "Monto":3000,
-                "Actividad": "Servicios",
                 "Descripción": "Diseño de Integración de Sistemas"
             }
         ],
@@ -111,15 +111,15 @@
         "Líder Técnico": "Angel Parra",
         "Contratación": [
             {
+                "Actividad": "Bienes",
                 "Partida Presupuestaria":"402990000",
                 "Monto":496900,
-                "Actividad": "Bienes",
                 "Descripción": "Servidores"
             },
             {
+                "Actividad": "Servicios",
                 "Partida Presupuestaria":"403100300",
                 "Monto":179000,
-                "Actividad": "Servicios",
                 "Descripción": "Diseño de Integración de Sistemas"
             }
         ],
@@ -201,15 +201,15 @@
         "Líder Técnico": "Yeselen Ron",
         "Contratación": [
             {
+                "Actividad": "Bienes",
                 "Partida Presupuestaria":"402990000",
                 "Monto":1353549,
-                "Actividad": "Bienes",
                 "Descripción": "Servidores"
             },
             {
+                "Actividad": "Servicios",
                 "Partida Presupuestaria":"403100300",
                 "Monto":2071050,
-                "Actividad": "Servicios",
                 "Descripción": "Diseño de Integración de Sistemas"
             }
         ],
@@ -275,15 +275,15 @@
         "Líder Técnico": "Francisco Suárez / Óscar Mejías",
         "Contratación": [
             {
+                "Actividad": "Bienes",
                 "Partida Presupuestaria":"402990000",
                 "Monto":3500000,
-                "Actividad": "Bienes",
                 "Descripción": "Servidores"
             },
             {
+                "Actividad": "Servicios",
                 "Partida Presupuestaria":"403100300",
                 "Monto":2065407.90,
-                "Actividad": "Servicios",
                 "Descripción": "Diseño de Integración de Sistemas"
             }
         ],
