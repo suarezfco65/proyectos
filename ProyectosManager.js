@@ -1,4 +1,4 @@
-class RegistroManager {
+class ProyectosManager {
     constructor(url) {
         this.url = url;
     }
@@ -71,25 +71,33 @@ class RegistroManager {
 
         // Sumar montos
         let totalMonto = 0;
+        let hayMontos = false;
 
         datos.forEach(registro => {
             const fila = campos.map(campo => {
                 const valor = registro[campo];
-                if (campo.includes('Monto')) {
+                if (campo.includes('Monto') && typeof valor === 'number') {
                     totalMonto += valor; // Sumar montos
+                    hayMontos = true; // Indicar que hay montos
                 }
                 return `<td>${this.formatearValor(campo, valor)}</td>`;
             }).join('');
             tabla += `<tr>${fila}</tr>`;
         });
 
-        // Mostrar total
-        tabla += `
+        // Solo mostrar total si hay montos
+        if (hayMontos) {
+            tabla += `
                     </tbody>
                 </table>
                 <h5>Total Monto: ${this.formatoFinanciero(totalMonto)}</h5>
-            </div>
-        `;
+            `;
+        } else {
+            tabla += `
+                    </tbody>
+                </table>
+            `;
+        }
 
         document.body.innerHTML += tabla;
     }
