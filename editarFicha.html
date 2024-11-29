@@ -8,16 +8,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="util.js"></script>
+  <script src="ProyectosManager.js"></script>
 </head>
 <body>
-
-<div id="navbar"></div>
-<script>addContentHTML('navbar','navbar.html');</script>
-
-<div class="container-fluid mt-3">
-  <h3>Proyectos</h3>
-  <p>Seguimiento a Proyectos de AIT en la Gerencia de Comercio y Suministro Internacional.</p>
-</div>
-
+    <div id="navbar"></div>
+<script>
+addContentHTML('navbar','navbar.html');
+// Uso de la clase
+const url = 'proyectos.json'; // Reemplaza con la URL de tu archivo JSON
+const codigoProyecto = getFieldFromLocation('codigo'); // Reemplaza 'nombreCampo' con el campo que desees
+const proyectos = new ProyectosManager(url);
+proyectos.mainForm(codigoProyecto);
+</script>
 </body>
 </html>
