@@ -15,10 +15,11 @@
 addContentHTML('navbar','navbar.html');
 // Uso de la clase
 const url = 'proyectos.json'; // Reemplaza con la URL de tu archivo JSON
+let camposTabla
 if (esMovil()) {
-  const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico"];
+  camposTabla = ['Código', 'Nombre', "Líder Técnico"];
 } else  {
-  const camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico",'Alcance'];
+  camposTabla = ['Código', 'Nombre', "Acrónimo", "Líder Técnico",'Alcance'];
 }
 const proyectos = new ProyectosManager(url);
 // Generar tabla
